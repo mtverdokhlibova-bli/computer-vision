@@ -37,7 +37,6 @@ model.add(layers.Flatten())
 model.add(layers.Dense(64, activation='relu'))
 model.add(layers.Dense(3, activation='softmax'))
 
-#навчання моделі
 model.compile(
     optimizer = 'adam',
     loss = 'categorical_crossentropy',
@@ -54,12 +53,9 @@ print("Test accuracy:", test_acc)
 class_name = train_ds.class_names
 
 if os.path.exists(test_photo):
-# class_name = sorted(os.listdir(TRAIN_PATH))
-# img = image.load_img(test_photo, target_size=(128, 128))
     img = image.load_img("images/234.jpg", target_size=(128, 128))
 
     img_array = image.img_to_array(img)
-    # img_array = img_array / 255.0
     img_array = np.expand_dims(img_array, axis=0)
 
     predictions = model.predict(img_array)
