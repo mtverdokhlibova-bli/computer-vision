@@ -31,10 +31,13 @@ model.add(layers.MaxPooling2D((2, 2)))
 model.add(layers.Conv2D(128, (3, 3), activation='relu'))
 model.add(layers.MaxPooling2D((2, 2)))
 
+model.add(layers.Conv2D(256, (3, 3), activation='relu'))
+model.add(layers.MaxPooling2D((2, 2))) #4 шар
+
 model.add(layers.Flatten())
 
 #шар який аналізує ознаки:
-model.add(layers.Dense(64, activation='relu'))
+model.add(layers.Dense(128, activation='relu'))
 model.add(layers.Dense(3, activation='softmax'))
 
 model.compile(
@@ -42,7 +45,7 @@ model.compile(
     loss = 'categorical_crossentropy',
     metrics = ['accuracy']
 )
-model.fit(train_ds, epochs=10, validation_data=test_ds)
+model.fit(train_ds, epochs=20, validation_data=test_ds)
 
 test_photo = os.path.join(BASE_DIR, 'images', '125.jpg')
 
